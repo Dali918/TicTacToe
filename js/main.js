@@ -1,7 +1,7 @@
 document.querySelectorAll('.board').forEach(item => {
     item.addEventListener("click", function handle() { play(item.id) })
-}
-)
+})
+document.getElementById('button').addEventListener('click', newGame)
 
 class Board {
     constructor() {
@@ -49,7 +49,7 @@ class Player {
         if (this.moves[0] && this.moves[4] && this.moves[8]) {
             return true
         }
-        
+
         if (this.moves[2] && this.moves[4] && this.moves[6]) {
             return true
         }
@@ -73,23 +73,21 @@ function play(id) {
 
 
     if (board.marked(id)) {
-        console.log("Already Marked")
-    }
-    else {
+        alert("Already Marked")
+    } else {
         board.mark(id)
         if (flag) {
             playerOne.mark(id)
             document.getElementById(id).innerText = "X"
             if (playerOne.checkWins()) {
-                console.log("Player One Won!")
+                document.querySelector('h2').innerText = "Player One Won!"
             }
-        }
-        else {
+        } else {
 
             playerTwo.mark(id)
             document.getElementById(id).innerText = "O"
             if (playerTwo.checkWins()) {
-                console.log("Player Two Won!")
+                document.querySelector('h2').innerText = "Player Two Won!"
             }
         }
         console.log(board.board)
@@ -100,4 +98,12 @@ function play(id) {
 
 }
 
-
+function newGame() {
+    let x = document.querySelectorAll('div')
+    x.forEach(element => { element.innerText = '' })
+    board = new Board()
+    playerOne = new Player()
+    playerTwo = new Player()
+    flag = true
+    document.querySelector('h2').innerText = ''
+}
