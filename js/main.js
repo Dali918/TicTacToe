@@ -49,6 +49,10 @@ class Player {
         if (this.moves[0] && this.moves[4] && this.moves[8]) {
             return true
         }
+        
+        if (this.moves[2] && this.moves[4] && this.moves[6]) {
+            return true
+        }
 
         return false
 
